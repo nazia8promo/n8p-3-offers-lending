@@ -30,6 +30,7 @@
   --shadow-xl: 0 15px 50px rgba(0, 0, 0, 0.2);
   --shadow-accent: 0 5px 20px rgba(255, 107, 53, 0.3);
   --shadow-soft: 0 10px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(46,139,87,0.08);
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
   
   /* Скругления */
   --radius-sm: 8px;
@@ -57,27 +58,27 @@
   padding: 0;
 }
 
+/* ===== ФОН — ДОРОГОЙ ЗЕЛЁНЫЙ GRADIENT + GRAIN ===== */
 body {
   font-family: var(--font-body);
-  color: var(--text-dark);
-  background: linear-gradient(
-    180deg,
-    #f6fff9 0%,
-    #f9fffb 40%,
-    #ffffff 100%
+  color: #1b1b1b;
+  background: radial-gradient(
+    at top,
+    #f3fbf7,
+    #e9f6ef
   );
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
 }
 
-/* ===== Параллакс-зерно (grain texture) ===== */
+/* ===== ЗЕРНО (premium-эффект) ===== */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   z-index: 9999;
 }
 
@@ -127,6 +128,7 @@ body::before {
   border-radius: 3px;
 }
 
+/* ===== ТЕКСТ — БОЛЬШЕ «МАССЫ», МЕНЬШЕ ВОЗДУХА ===== */
 /* Заголовки */
 h1 { 
   font-size: clamp(32px, 6vw, 56px); 
@@ -137,12 +139,19 @@ h1 {
 h2 { 
   font-size: clamp(26px, 5vw, 40px); 
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.2;
+}
+
+h3 { 
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 p { 
   font-size: 16px; 
-  line-height: 1.5; 
+  line-height: 1.5;
+  margin-bottom: 12px;
 }
 
 /* ===== Hero секция ===== */
@@ -180,9 +189,9 @@ p {
   margin-bottom: var(--space-xl);
 }
 
-/* ===== Живой логотип ===== */
+/* ===== ЛОГОТИП — ЖИВОЙ И ДОРОГОЙ ===== */
 .logo-wrapper {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 12px;
 }
@@ -194,17 +203,17 @@ p {
   gap: 6px;
   font-weight: 800;
   font-size: 1.4rem;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.08em;
 }
 
 .brand-nazia {
-  color: #2e8b57; /* зелёный */
+  color: #1a3c34;
   -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.25);
   text-shadow: 0 1px 1px rgba(255,255,255,0.6);
 }
 
 .brand-promo {
-  color: #ff6b35; /* оранжевый */
+  color: #ff6b35;
   -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.25);
   text-shadow: 0 1px 1px rgba(255,255,255,0.6);
 }
@@ -216,20 +225,20 @@ p {
 }
 
 .brand-mobius {
-  height: 28px;
-  width: auto;
+  height: 44px;
+  width: 44px;
   display: block;
   background: transparent !important;
   box-shadow: none !important;
   border: none !important;
   outline: none !important;
   overflow: visible;
-  animation: spinSlow 12s linear infinite;
+  animation: spinSlow 8s linear infinite;
 }
 
 /* ===== Микро-интеракция логотипа ===== */
 .logo-wrapper:hover .brand-mobius {
-  animation-duration: 4s;
+  animation-duration: 3s;
 }
 
 .site-logo {
@@ -298,10 +307,14 @@ p {
   align-items: center;
 }
 
+/* ===== БОНУС «ЖАРА» (WOW) — Подсветка чисел ===== */
 .stat-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--accent-light);
+  font-size: 42px;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ff6b35, #2e8b57);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
   transition: transform 0.3s ease;
 }
@@ -385,22 +398,20 @@ p {
   margin: 0 auto var(--space-xl);
 }
 
-/* ===== Мягкие карточки (glass-lite) ===== */
+/* ===== КАРТОЧКИ — ПРЕМИУМ (GLASS LITE) ===== */
 .problem-card {
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.92),
-    rgba(255,255,255,0.85)
+    rgba(255,255,255,0.95),
+    rgba(255,255,255,0.88)
   );
-  backdrop-filter: blur(4px);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.35s ease;
   border-top: 4px solid var(--accent-main);
 }
 
-/* ===== Hover-эффект «дорогой SaaS» ===== */
 .problem-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-soft);
@@ -507,18 +518,17 @@ p {
   margin: 0 auto var(--space-xl);
 }
 
-/* ===== Мягкие карточки для прайсинга ===== */
+/* ===== КАРТОЧКИ — ПРЕМИУМ (GLASS LITE) ===== */
 .pricing-card {
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.92),
-    rgba(255,255,255,0.85)
+    rgba(255,255,255,0.95),
+    rgba(255,255,255,0.88)
   );
-  backdrop-filter: blur(4px);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.35s ease;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -858,18 +868,17 @@ p {
   margin: 0 auto var(--space-xl);
 }
 
-/* ===== Мягкие карточки для промо ===== */
+/* ===== КАРТОЧКИ — ПРЕМИУМ (GLASS LITE) ===== */
 .promo-card {
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.92),
-    rgba(255,255,255,0.85)
+    rgba(255,255,255,0.95),
+    rgba(255,255,255,0.88)
   );
-  backdrop-filter: blur(4px);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.35s ease;
   display: flex;
   flex-direction: column;
 }
@@ -1042,18 +1051,17 @@ p {
   margin: 0 auto;
 }
 
-/* ===== Мягкие карточки для кейсов ===== */
+/* ===== КАРТОЧКИ — ПРЕМИУМ (GLASS LITE) ===== */
 .case-study {
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.92),
-    rgba(255,255,255,0.85)
+    rgba(255,255,255,0.95),
+    rgba(255,255,255,0.88)
   );
-  backdrop-filter: blur(4px);
-  padding: var(--space-xl);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.35s ease;
 }
 
 .case-study:hover {
@@ -1145,19 +1153,24 @@ p {
 }
 
 /* ===== CTA секция ===== */
-/* === CTA: центрирование на десктопе === */
+/* === ЗЕЛЁНЫЙ CTA-БЛОК (АДАПТИВ) === */
 .cta {
-  padding: 80px 24px;
-  background: var(--gradient-primary);
+  background: linear-gradient(
+    135deg,
+    #2e8b57,
+    #1f6b4a
+  );
   color: white;
-  border-radius: var(--radius-xl);
-  margin: 60px 20px;
+  padding: 48px 24px;
+  border-radius: 28px;
+  text-align: center;
+  max-width: 1100px;
+  margin: 80px auto;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   
   /* УБИРАЕМ ЛЮБУЮ ЖЁСТКУЮ ВЫСОТУ (КРИТИЧНО) */
   height: auto !important;
@@ -1169,7 +1182,7 @@ p {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 24px;
+  padding: 48px 24px;
   height: auto !important;
   min-height: unset !important;
 }
@@ -1399,19 +1412,19 @@ footer {
   font-size: 0.8rem;
 }
 
-/* ===== Кнопки ===== */
+/* ===== КНОПКИ — НЕ НА ВЕСЬ МОБИЛЬНЫЙ ЭКРАН ===== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
-  padding: 16px 32px;
+  padding: 14px 28px;
   background: var(--gradient-accent);
   color: white;
   text-decoration: none;
-  border-radius: var(--radius-round);
-  font-weight: 600;
+  border-radius: 999px;
+  font-weight: 700;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1419,6 +1432,7 @@ footer {
   position: relative;
   overflow: hidden;
   font-family: inherit;
+  max-width: 320px;
 }
 
 .btn::after {
@@ -1443,6 +1457,13 @@ footer {
 
 .btn i {
   font-size: 1.1rem;
+}
+
+/* ===== УБРАТЬ СЕРУЮ ЛИНИЮ ПОД ЗАГОЛОВКАМИ ===== */
+hr,
+.divider,
+.section-line {
+  display: none !important;
 }
 
 /* ===== Адаптивность ===== */
@@ -1537,18 +1558,18 @@ footer {
   
   .pricing-card,
   .problem-card {
-    padding: 14px;
+    padding: 24px 16px;
   }
   
-  /* Патч: кнопки на мобиле не full-width */
+  /* КНОПКИ — НЕ НА ВЕСЬ МОБИЛЬНЫЙ ЭКРАН */
   .btn,
   .btn-large {
-    width: auto !important;
+    width: auto;
+    display: inline-block;
     max-width: 280px;
     padding: 12px 20px;
     font-size: 15px;
     margin: 0 auto;
-    display: inline-flex;
   }
   
   /* Патч: убрать воздух в карточках */
@@ -1557,7 +1578,7 @@ footer {
   .pricing-card,
   .promo-card,
   .case-study {
-    padding: 12px 14px;
+    padding: 20px 16px;
   }
   
   /* Патч: рост блок - убрать min-height */
@@ -1577,15 +1598,16 @@ footer {
     font-size: 16px;
   }
   
-  /* МОБИЛЬНЫЙ ФИКС CTA (ЧТОБ ВСЁ ВЛЕЗАЛО) */
+  /* ЗЕЛЁНЫЙ CTA-БЛОК (АДАПТИВ) — МОБИЛЬНЫЙ ФИКС */
   .cta,
   .cta-green {
     padding: 32px 16px !important;
+    margin: 60px 16px;
   }
 
   .cta h2 {
     font-size: 22px;
-    line-height: 1.25;
+    line-height: 1.3;
     margin-bottom: 12px;
   }
 
@@ -1649,7 +1671,7 @@ footer {
   .pricing-card,
   .promo-card,
   .case-study {
-    padding: 16px;
+    padding: 20px 16px;
   }
 
   .features-list li,
@@ -1665,7 +1687,8 @@ footer {
   }
 
   .brand-mobius {
-    height: 22px;
+    height: 32px;
+    width: 32px;
   }
   
   .site-logo img {
@@ -1711,10 +1734,6 @@ header::after,
   border-bottom: none !important;
   box-shadow: none !important;
   border-top: none !important;
-}
-
-hr {
-  display: none !important;
 }
 
 /* Патч для роста блоков */
