@@ -1,8 +1,29 @@
-// Навороченные эффекты для Nazia8Promo
+// main.js - улучшенная версия
 document.addEventListener('DOMContentLoaded', function() {
   console.log("🚀 Nazia8Promo Premium loaded");
   
-  // Плавный скролл для ссылок
+  // Анимация счетчиков
+  function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number, .total-loss-amount, .result-value');
+    counters.forEach(counter => {
+      const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+      const suffix = counter.textContent.replace(/[0-9]/g, '');
+      const duration = 2000;
+      const step = target / (duration / 16);
+      
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        counter.textContent = Math.floor(current) + suffix;
+      }, 16);
+    });
+  }
+  
+  // Плавный скролл
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -19,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Анимация появления элементов при скролле
+  // Анимация появления при скролле
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -33,16 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, observerOptions);
   
-  // Наблюдаем за карточками и секциями
-  document.querySelectorAll('.card, .section h2, ul li').forEach(el => {
+  // Наблюдаем за элементами
+  document.querySelectorAll('.problem-card, .pricing-card, .promo-card, .case-study, .step').forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
+    el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    
     observer.observe(el);
   });
   
-  // Добавляем класс для анимации
+  // Добавляем стили для анимации
   const style = document.createElement('style');
   style.textContent = `
     .animate-in {
@@ -50,22 +70,36 @@ document.addEventListener('DOMContentLoaded', function() {
       transform: translateY(0) !important;
     }
     
-    .card:nth-child(1) { transition-delay: 0.1s; }
-    .card:nth-child(2) { transition-delay: 0.2s; }
-    .card:nth-child(3) { transition-delay: 0.3s; }
+    .problem-card:nth-child(1) { transition-delay: 0.1s; }
+    .problem-card:nth-child(2) { transition-delay: 0.2s; }
+    .problem-card:nth-child(3) { transition-delay: 0.3s; }
+    .problem-card:nth-child(4) { transition-delay: 0.4s; }
+    
+    .pricing-card:nth-child(1) { transition-delay: 0.2s; }
+    .pricing-card:nth-child(2) { transition-delay: 0.4s; }
+    .pricing-card:nth-child(3) { transition-delay: 0.6s; }
   `;
   document.head.appendChild(style);
   
-  // Эффект параллакса для hero секции
+  // Эффект параллакса
   window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     if(hero) {
       hero.style.transform = `translateY(${scrolled * 0.05}px)`;
     }
+    
+    // Анимация графиков при скролле
+    const bars = document.querySelectorAll('.bar-fill');
+    bars.forEach(bar => {
+      const rect = bar.getBoundingClientRect();
+      if(rect.top < window.innerHeight * 0.8) {
+        bar.style.width = bar.style.width;
+      }
+    });
   });
   
-  // Интерактивность для кнопок
+  // Интерактивность кнопок
   const buttons = document.querySelectorAll('.btn');
   buttons.forEach(button => {
     button.addEventListener('mousedown', function() {
@@ -81,8 +115,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  // Инициализация анимаций
+  setTimeout(animateCounters, 1000);
+  
   // Консольное приветствие
-  console.log("%c🚀 NAZIA8PROMO %c\nГотовы к росту продаж? 👑", 
+  console.log("%c🚀 NAZIA8PROMO %c\nГотовы к экспоненциальному росту? 👑", 
     "color: #2E8B57; font-size: 18px; font-weight: bold;", 
     "color: #FF6B35; font-size: 14px;");
+  
+  console.log("%c📈 Премиум решения для роста бизнеса\n💼 Системные продажи\n📱 Автоматизация процессов\n🎯 Гарантия результата", 
+    "color: #1A3C34; font-size: 12px; background: #F8F9FA; padding: 10px; border-radius: 5px;");
 });

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF6B35"/>
+            <stop offset="100%" stop-color="#2E8B57"/>
+        </linearGradient>
+        
+        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF6B35"/>
+            <stop offset="100%" stop-color="#2E8B57"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- Иконка -->
+    <g transform="translate(10, 10)">
+        <path d="M 20,60 
+            C 20,30 40,10 60,10 
+            C 80,10 100,30 100,60 
+            C 100,90 80,110 60,110 
+            C 40,110 20,90 20,60 
+            Z
+            M 35,60
+            C 35,50 50,40 60,40
+            C 70,40 85,50 85,60
+            C 85,70 70,80 60,80
+            C 50,80 35,70 35,60
+            Z" 
+            fill="url(#iconGradient)" 
+            stroke="#1A3C34" 
+            stroke-width="2"/>
+        
+        <text x="60" y="65" 
+            text-anchor="middle" 
+            font-family="Arial Black" 
+            font-size="20" 
+            fill="white" 
+            font-weight="900">
+            8
+        </text>
+    </g>
+    
+    <!-- Текст -->
+    <g transform="translate(120, 0)">
+        <text x="0" y="45" 
+            font-family="'Segoe UI', Arial, sans-serif" 
+            font-size="36" 
+            font-weight="800" 
+            fill="#1A3C34"
+            letter-spacing="1">
+            NAZIA
+        </text>
+        
+        <text x="125" y="45" 
+            font-family="'Segoe UI', Arial, sans-serif" 
+            font-size="36" 
+            font-weight="800" 
+            fill="#FF6B35"
+            letter-spacing="1">
+            8
+        </text>
+        
+        <text x="155" y="45" 
+            font-family="'Segoe UI', Arial, sans-serif" 
+            font-size="36" 
+            font-weight="800" 
+            fill="#1A3C34"
+            letter-spacing="1">
+            PROMO
+        </text>
+        
+        <!-- Подзаголовок -->
+        <text x="0" y="85" 
+            font-family="'Segoe UI', Arial, sans-serif" 
+            font-size="16" 
+            font-weight="600" 
+            fill="#2E8B57"
+            letter-spacing="4">
+            PREMIUM SOLUTIONS
+        </text>
+    </g>
+</svg>
