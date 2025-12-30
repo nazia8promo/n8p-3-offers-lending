@@ -1450,3 +1450,40 @@ footer {
     font-size: 0.95rem;
   }
 }
+
+/* ===== PATCH CSS-1 — СТИЛИ ЛОГОТИПА (ОСНОВНОЕ) ===== */
+/* ===== Brand logo (Nazia + Möbius + Promo) ===== */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.5px;
+}
+
+.brand-nazia {
+  color: #2e8b57; /* зелёный */
+}
+
+.brand-promo {
+  color: #ff6b35; /* оранжевый */
+}
+
+.brand-mobius {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* ===== PATCH CSS-2 — МОБИЛЬНАЯ ВЕРСИЯ ===== */
+@media (max-width: 640px) {
+  .brand-logo {
+    font-size: 1.1rem;
+    gap: 4px;
+  }
+
+  .brand-mobius {
+    height: 22px;
+  }
+}
