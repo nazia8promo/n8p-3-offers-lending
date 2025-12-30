@@ -59,7 +59,12 @@
 body {
   font-family: var(--font-body);
   color: var(--text-dark);
-  background-color: var(--background-white);
+  background: linear-gradient(
+    180deg,
+    #f6fff9 0%,
+    #f9fffb 40%,
+    #ffffff 100%
+  );
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -94,6 +99,24 @@ body {
   margin: 0 auto;
 }
 
+/* Заголовки */
+h1 { 
+  font-size: clamp(32px, 6vw, 56px); 
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+h2 { 
+  font-size: clamp(26px, 5vw, 40px); 
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+p { 
+  font-size: 16px; 
+  line-height: 1.5; 
+}
+
 /* ===== Hero секция ===== */
 .hero {
   padding: 60px 20px 100px;
@@ -101,6 +124,8 @@ body {
   color: var(--text-white);
   position: relative;
   overflow: hidden;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 .hero::before {
@@ -125,6 +150,50 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: var(--space-xl);
+}
+
+/* ===== Brand logo (Nazia + Möbius + Promo) ===== */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.5px;
+}
+
+.brand-nazia {
+  color: #2e8b57; /* зелёный */
+  -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+}
+
+.brand-promo {
+  color: #ff6b35; /* оранжевый */
+  -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+}
+
+/* ===== 3️⃣ ЛЕНТА МЁБИУСА — УСКОРИТЬ ВРАЩЕНИЕ + УБРАТЬ КВАДРАТНУЮ «РАМКУ» ===== */
+@keyframes mobius-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.brand-mobius {
+  height: 28px;
+  width: auto;
+  display: block;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  overflow: visible;
+  animation: mobius-spin 4s linear infinite;
 }
 
 .site-logo {
@@ -1345,6 +1414,7 @@ footer {
   
   .cta-buttons {
     flex-direction: column;
+    align-items: center;
   }
   
   .footer-container {
@@ -1367,50 +1437,60 @@ footer {
     padding: 14px;
   }
   
-  .btn {
+  /* Патч: кнопки на мобиле не full-width */
+  .btn,
+  .btn-large {
+    width: auto !important;
+    max-width: 280px;
+    padding: 12px 20px;
+    font-size: 15px;
+    margin: 0 auto;
+    display: inline-flex;
+  }
+  
+  /* Патч: убрать воздух в карточках */
+  .card,
+  .price-card,
+  .pricing-card,
+  .promo-card,
+  .case-study {
     padding: 12px 14px;
-    font-size: 0.9rem;
+  }
+  
+  /* Патч: рост блок - убрать min-height */
+  .growth,
+  .growth-section,
+  .cta-growth {
+    padding: 32px 16px !important;
+    min-height: auto !important;
+  }
+
+  .growth h2 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .growth p {
+    font-size: 16px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .hero h1 {
     font-size: 1.8rem;
   }
   
   .btn,
   .btn-large {
-    width: 100%;
+    width: auto !important;
     text-align: center;
   }
   
   .setup-info {
     grid-template-columns: 1fr;
   }
-}
-
-/* Добавлены дополнительные классы для плотной сетки - по патчу */
-.pricing-grid,
-.cards-grid {
-  gap: var(--space-md);
-}
-
-/* ===== PATCH CSS-2 — стили логотипа ===== */
-.site-logo img,
-.footer-logo {
-  height: 56px;
-  width: auto;
-  display: block;
-}
-
-@media (max-width: 640px) {
-  .site-logo img {
-    height: 38px;
-  }
-}
-
-/* ===== PATCH CSS-3 — HERO помещается в 1 экран (mobile) ===== */
-@media (max-width: 640px) {
+  
+  /* Патч CSS-3 — HERO помещается в 1 экран (mobile) */
   .hero {
     padding: 32px 16px 56px;
   }
@@ -1434,10 +1514,8 @@ footer {
     padding: 14px 24px;
     font-size: 1rem;
   }
-}
-
-/* ===== PATCH CSS-4 — сжать «воздух» в карточках ===== */
-@media (max-width: 640px) {
+  
+  /* Патч CSS-4 — сжать «воздух» в карточках */
   .pricing-card,
   .promo-card,
   .case-study {
@@ -1449,35 +1527,8 @@ footer {
     padding: 6px 0;
     font-size: 0.95rem;
   }
-}
-
-/* ===== PATCH CSS-1 — СТИЛИ ЛОГОТИПА (ОСНОВНОЕ) ===== */
-/* ===== Brand logo (Nazia + Möbius + Promo) ===== */
-.brand-logo {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 800;
-  font-size: 1.4rem;
-  letter-spacing: -0.5px;
-}
-
-.brand-nazia {
-  color: #2e8b57; /* зелёный */
-}
-
-.brand-promo {
-  color: #ff6b35; /* оранжевый */
-}
-
-.brand-mobius {
-  height: 28px;
-  width: auto;
-  display: block;
-}
-
-/* ===== PATCH CSS-2 — МОБИЛЬНАЯ ВЕРСИЯ ===== */
-@media (max-width: 640px) {
+  
+  /* Патч CSS-2 — МОБИЛЬНАЯ ВЕРСИЯ ЛОГОТИПА */
   .brand-logo {
     font-size: 1.1rem;
     gap: 4px;
@@ -1486,40 +1537,90 @@ footer {
   .brand-mobius {
     height: 22px;
   }
-}
-
-/* ===== 1️⃣ ЛОГОТИП: ОБВОДКА ДЛЯ nazia и promo ===== */
-.brand-nazia,
-.brand-promo {
-  -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.25);
-  text-shadow:
-    0 1px 1px rgba(255,255,255,0.6);
-}
-
-/* ===== 3️⃣ ЛЕНТА МЁБИУСА — УСКОРИТЬ ВРАЩЕНИЕ + УБРАТЬ КВАДРАТНУЮ «РАМКУ» ===== */
-@keyframes mobius-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  
+  .site-logo img {
+    height: 38px;
   }
 }
 
-.brand-mobius {
-  background: transparent !important;
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  /* Патч: кнопки на мобиле */
+  .btn,
+  .btn-large {
+    width: auto !important;
+    text-align: center;
+  }
+}
+
+/* Добавлены дополнительные классы для плотной сетки - по патчу */
+.pricing-grid,
+.cards-grid {
+  gap: var(--space-md);
+}
+
+/* ===== PATCH CSS-2 — стили логотипа ===== */
+.site-logo img,
+.footer-logo {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+
+/* СЕРАЯ ГОРИЗОНТАЛЬНАЯ ЛИНИЯ СВЕРХУ — УБРАТЬ */
+/* Убираем серую линию под хедером */
+header,
+.header,
+.hero,
+.hero-section,
+header::after,
+.hero::after {
+  border-bottom: none !important;
   box-shadow: none !important;
-  border: none !important;
-  outline: none !important;
-  overflow: visible;
-  animation: mobius-spin 4s linear infinite;
+  border-top: none !important;
 }
 
-/* ===== СЕРАЯ ЖИРНАЯ ГОРИЗОНТАЛЬНАЯ ЛИНИЯ ЗА «Экспоненциальный рост» ===== */
+hr {
+  display: none !important;
+}
+
+/* Патч для роста блоков */
+.growth,
+.growth-section,
+.cta-growth,
+.cta {
+  min-height: auto !important;
+}
+
+.growth-content,
+.cta-content {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Дополнительные стили для таблиц/карточек */
+.table td,
+.table th {
+  padding: 12px 14px;
+}
+
+/* СЕРАЯ ЖИРНАЯ ГОРИЗОНТАЛЬНАЯ ЛИНИЯ ЗА «Экспоненциальный рост» — УБРАТЬ */
 .hero-title::after,
 .hero-subtitle::after,
 .hero hr {
   display: none !important;
   content: none !important;
   border: none !important;
+}
+
+/* Если линия всё ещё есть — значит это ::after: */
+header::after,
+.hero::after {
+  display: none !important;
 }
