@@ -1,128 +1,64 @@
-// main.js - улучшенная версия
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   console.log("🚀 Nazia8Promo Premium loaded");
-  
-  // Анимация счетчиков
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== Counters (RAF вместо setInterval) ===== */
   function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number, .total-loss-amount, .result-value');
-    counters.forEach(counter => {
-      const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
-      const suffix = counter.textContent.replace(/[0-9]/g, '');
-      const duration = 2000;
-      const step = target / (duration / 16);
-      
-      let current = 0;
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
+    if (reduceMotion) return;
+
+    document.querySelectorAll('.stat-number, .total-loss-amount, .result-value')
+      .forEach(el => {
+        const raw = el.textContent;
+        const target = parseInt(raw.replace(/\D/g, ''), 10);
+        const suffix = raw.replace(/[0-9]/g, '');
+        let start = null;
+
+        function tick(ts) {
+          if (!start) start = ts;
+          const progress = Math.min((ts - start) / 1800, 1);
+          el.textContent = Math.floor(progress * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
         }
-        counter.textContent = Math.floor(current) + suffix;
-      }, 16);
-    });
+
+        requestAnimationFrame(tick);
+      });
   }
-  
-  // Плавный скролл
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+
+  /* ===== Smooth scroll ===== */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
       e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if(targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if(targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
-        });
-      }
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
-  
-  // Анимация появления при скролле
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-      }
-    });
-  }, observerOptions);
-  
-  // Наблюдаем за элементами
-  document.querySelectorAll('.problem-card, .pricing-card, .promo-card, .case-study, .step').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+
+  /* ===== Reveal on scroll ===== */
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('animate-in'));
+    }, { threshold: 0.12 });
+
+    document
+      .querySelectorAll('.problem-card, .pricing-card, .promo-card, .case-study, .step')
+      .forEach(el => io.observe(el));
+  }
+
+  /* ===== Logo theme switch ===== */
+  document.querySelectorAll('.adaptive-logo').forEach(logo => {
+    const dark = logo.dataset.dark;
+    const light = logo.dataset.light;
+    const isDark = logo.closest('.hero, footer, .dark');
+    logo.src = isDark ? dark : light;
   });
-  
-  // Добавляем стили для анимации
-  const style = document.createElement('style');
-  style.textContent = `
-    .animate-in {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-    
-    .problem-card:nth-child(1) { transition-delay: 0.1s; }
-    .problem-card:nth-child(2) { transition-delay: 0.2s; }
-    .problem-card:nth-child(3) { transition-delay: 0.3s; }
-    .problem-card:nth-child(4) { transition-delay: 0.4s; }
-    
-    .pricing-card:nth-child(1) { transition-delay: 0.2s; }
-    .pricing-card:nth-child(2) { transition-delay: 0.4s; }
-    .pricing-card:nth-child(3) { transition-delay: 0.6s; }
-  `;
-  document.head.appendChild(style);
-  
-  // Эффект параллакса
-  window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if(hero) {
-      hero.style.transform = `translateY(${scrolled * 0.05}px)`;
-    }
-    
-    // Анимация графиков при скролле
-    const bars = document.querySelectorAll('.bar-fill');
-    bars.forEach(bar => {
-      const rect = bar.getBoundingClientRect();
-      if(rect.top < window.innerHeight * 0.8) {
-        bar.style.width = bar.style.width;
-      }
-    });
-  });
-  
-  // Интерактивность кнопок
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(button => {
-    button.addEventListener('mousedown', function() {
-      this.style.transform = 'scale(0.95)';
-    });
-    
-    button.addEventListener('mouseup', function() {
-      this.style.transform = '';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-      this.style.transform = '';
-    });
-  });
-  
-  // Инициализация анимаций
-  setTimeout(animateCounters, 1000);
-  
-  // Консольное приветствие
-  console.log("%c🚀 NAZIA8PROMO %c\nГотовы к экспоненциальному росту? 👑", 
-    "color: #2E8B57; font-size: 18px; font-weight: bold;", 
-    "color: #FF6B35; font-size: 14px;");
-  
-  console.log("%c📈 Премиум решения для роста бизнеса\n💼 Системные продажи\n📱 Автоматизация процессов\n🎯 Гарантия результата", 
-    "color: #1A3C34; font-size: 12px; background: #F8F9FA; padding: 10px; border-radius: 5px;");
+
+  /* ===== Init ===== */
+  setTimeout(animateCounters, 600);
+
+  console.log("%cNAZIA8PROMO — системный рост",
+    "color:#2E8B57;font-weight:700;font-size:14px");
 });

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>Nazia8Promo — Премиум решения для роста продаж</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,7 +14,13 @@
 <header class="hero">
   <div class="hero-container">
     <div class="logo-header">
-      <img src="assets/logo-text-mobius.svg" alt="Nazia8Promo" class="site-logo">
+      <img
+        class="site-logo adaptive-logo"
+        src="assets/logo-text-mobius-dark.svg"
+        data-light="assets/logo-text-mobius-light.svg"
+        data-dark="assets/logo-text-mobius-dark.svg"
+        alt="NaziaPromo"
+      />
     </div>
     
     <div class="hero-content">
@@ -128,69 +134,75 @@
 
   <div class="pricing-cards">
     <div class="pricing-card">
-      <div class="pricing-header">
-        <h3><i class="fab fa-telegram"></i> Telegram</h3>
-        <div class="pricing-badge">Базовый</div>
+      <div class="pricing-content">
+        <div class="pricing-header">
+          <h3><i class="fab fa-telegram"></i> Telegram</h3>
+          <div class="pricing-badge">Базовый</div>
+        </div>
+        <div class="price">
+          <span class="price-amount">25 000 ₸</span>
+          <span class="price-period">/ месяц</span>
+        </div>
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> Автоматизация Telegram</li>
+          <li><i class="fas fa-check"></i> Базовая CRM</li>
+          <li><i class="fas fa-check"></i> До 3 пользователей</li>
+          <li><i class="fas fa-check"></i> 5 ГБ хранилища</li>
+          <li><i class="fas fa-times"></i> WhatsApp интеграция</li>
+          <li><i class="fas fa-times"></i> Instagram интеграция</li>
+        </ul>
+        <a href="https://wa.me/77477025586" class="btn btn-outline">
+          <i class="fas fa-info-circle"></i> Подробнее
+        </a>
       </div>
-      <div class="price">
-        <span class="price-amount">25 000 ₸</span>
-        <span class="price-period">/ месяц</span>
-      </div>
-      <ul class="features-list">
-        <li><i class="fas fa-check"></i> Автоматизация Telegram</li>
-        <li><i class="fas fa-check"></i> Базовая CRM</li>
-        <li><i class="fas fa-check"></i> До 3 пользователей</li>
-        <li><i class="fas fa-check"></i> 5 ГБ хранилища</li>
-        <li><i class="fas fa-times"></i> WhatsApp интеграция</li>
-        <li><i class="fas fa-times"></i> Instagram интеграция</li>
-      </ul>
-      <a href="https://wa.me/77477025586" class="btn btn-outline">
-        <i class="fas fa-info-circle"></i> Подробнее
-      </a>
     </div>
     
     <div class="pricing-card featured">
-      <div class="pricing-header">
-        <h3><i class="fab fa-whatsapp"></i> WhatsApp + Telegram</h3>
-        <div class="pricing-badge popular">ПОПУЛЯРНЫЙ</div>
+      <div class="pricing-content">
+        <div class="pricing-header">
+          <h3><i class="fab fa-whatsapp"></i> WhatsApp + Telegram</h3>
+          <div class="pricing-badge popular">ПОПУЛЯРНЫЙ</div>
+        </div>
+        <div class="price">
+          <span class="price-amount">35 000 ₸</span>
+          <span class="price-period">/ месяц</span>
+        </div>
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> WhatsApp + Telegram</li>
+          <li><i class="fas fa-check"></i> Продвинутая CRM</li>
+          <li><i class="fas fa-check"></i> До 10 пользователей</li>
+          <li><i class="fas fa-check"></i> 20 ГБ хранилища</li>
+          <li><i class="fas fa-check"></i> Автоответчик AI</li>
+          <li><i class="fas fa-times"></i> Instagram интеграция</li>
+        </ul>
+        <a href="https://wa.me/77477025586" class="btn">
+          <i class="fas fa-bolt"></i> Подключить
+        </a>
       </div>
-      <div class="price">
-        <span class="price-amount">35 000 ₸</span>
-        <span class="price-period">/ месяц</span>
-      </div>
-      <ul class="features-list">
-        <li><i class="fas fa-check"></i> WhatsApp + Telegram</li>
-        <li><i class="fas fa-check"></i> Продвинутая CRM</li>
-        <li><i class="fas fa-check"></i> До 10 пользователей</li>
-        <li><i class="fas fa-check"></i> 20 ГБ хранилища</li>
-        <li><i class="fas fa-check"></i> Автоответчик AI</li>
-        <li><i class="fas fa-times"></i> Instagram интеграция</li>
-      </ul>
-      <a href="https://wa.me/77477025586" class="btn">
-        <i class="fas fa-bolt"></i> Подключить
-      </a>
     </div>
     
     <div class="pricing-card">
-      <div class="pricing-header">
-        <h3><i class="fab fa-instagram"></i> Полный пакет</h3>
-        <div class="pricing-badge">VIP</div>
+      <div class="pricing-content">
+        <div class="pricing-header">
+          <h3><i class="fab fa-instagram"></i> Полный пакет</h3>
+          <div class="pricing-badge">VIP</div>
+        </div>
+        <div class="price">
+          <span class="price-amount">45 000 ₸</span>
+          <span class="price-period">/ месяц</span>
+        </div>
+        <ul class="features-list">
+          <li><i class="fas fa-check"></i> Все мессенджеры</li>
+          <li><i class="fas fa-check"></i> Полная CRM система</li>
+          <li><i class="fas fa-check"></i> Неограниченно пользователей</li>
+          <li><i class="fas fa-check"></i> 50 ГБ хранилища</li>
+          <li><i class="fas fa-check"></i> Продвинутый AI</li>
+          <li><i class="fas fa-check"></i> Аналитика и отчеты</li>
+        </ul>
+        <a href="https://wa.me/77477025586" class="btn btn-outline">
+          <i class="fas fa-crown"></i> Премиум
+        </a>
       </div>
-      <div class="price">
-        <span class="price-amount">45 000 ₸</span>
-        <span class="price-period">/ месяц</span>
-      </div>
-      <ul class="features-list">
-        <li><i class="fas fa-check"></i> Все мессенджеры</li>
-        <li><i class="fas fa-check"></i> Полная CRM система</li>
-        <li><i class="fas fa-check"></i> Неограниченно пользователей</li>
-        <li><i class="fas fa-check"></i> 50 ГБ хранилища</li>
-        <li><i class="fas fa-check"></i> Продвинутый AI</li>
-        <li><i class="fas fa-check"></i> Аналитика и отчеты</li>
-      </ul>
-      <a href="https://wa.me/77477025586" class="btn btn-outline">
-        <i class="fas fa-crown"></i> Премиум
-      </a>
     </div>
   </div>
 
@@ -313,68 +325,74 @@
 
   <div class="promo-cards">
     <div class="promo-card">
-      <div class="promo-header">
-        <h3>START</h3>
-        <div class="promo-price">
-          <span class="price-amount">200 000 ₸</span>
-          <span class="price-period">/ месяц</span>
+      <div class="promo-content">
+        <div class="promo-header">
+          <h3>START</h3>
+          <div class="promo-price">
+            <span class="price-amount">200 000 ₸</span>
+            <span class="price-period">/ месяц</span>
+          </div>
         </div>
+        <ul class="promo-features">
+          <li><i class="fas fa-check"></i> <strong>Стратегия продвижения</strong></li>
+          <li><i class="fas fa-check"></i> Контент-план на месяц</li>
+          <li><i class="fas fa-check"></i> 15 постов + 10 сторис</li>
+          <li><i class="fas fa-check"></i> Базовая аналитика</li>
+          <li><i class="fas fa-times"></i> Видео-контент</li>
+          <li><i class="fas fa-times"></i> Таргетированная реклама</li>
+        </ul>
+        <a href="https://wa.me/77477025586" class="btn btn-outline">
+          <i class="fas fa-play"></i> Начать
+        </a>
       </div>
-      <ul class="promo-features">
-        <li><i class="fas fa-check"></i> <strong>Стратегия продвижения</strong></li>
-        <li><i class="fas fa-check"></i> Контент-план на месяц</li>
-        <li><i class="fas fa-check"></i> 15 постов + 10 сторис</li>
-        <li><i class="fas fa-check"></i> Базовая аналитика</li>
-        <li><i class="fas fa-times"></i> Видео-контент</li>
-        <li><i class="fas fa-times"></i> Таргетированная реклама</li>
-      </ul>
-      <a href="https://wa.me/77477025586" class="btn btn-outline">
-        <i class="fas fa-play"></i> Начать
-      </a>
     </div>
     
     <div class="promo-card featured">
-      <div class="promo-header">
-        <h3>PRO</h3>
-        <div class="promo-badge">ХИТ</div>
-        <div class="promo-price">
-          <span class="price-amount">299 000 ₸</span>
-          <span class="price-period">/ месяц</span>
+      <div class="promo-content">
+        <div class="promo-header">
+          <h3>PRO</h3>
+          <div class="promo-badge">ХИТ</div>
+          <div class="promo-price">
+            <span class="price-amount">299 000 ₸</span>
+            <span class="price-period">/ месяц</span>
+          </div>
         </div>
+        <ul class="promo-features">
+          <li><i class="fas fa-check"></i> <strong>Всё из START +</strong></li>
+          <li><i class="fas fa-check"></i> 5 Reels/ТикТоков</li>
+          <li><i class="fas fa-check"></i> Таргетированная реклама</li>
+          <li><i class="fas fa-check"></i> Аналитика и отчётность</li>
+          <li><i class="fas fa-check"></i> А/Б тестирование</li>
+          <li><i class="fas fa-check"></i> Комьюнити-менеджмент</li>
+        </ul>
+        <a href="https://wa.me/77477025586" class="btn">
+          <i class="fas fa-fire"></i> Продвигать
+        </a>
       </div>
-      <ul class="promo-features">
-        <li><i class="fas fa-check"></i> <strong>Всё из START +</strong></li>
-        <li><i class="fas fa-check"></i> 5 Reels/ТикТоков</li>
-        <li><i class="fas fa-check"></i> Таргетированная реклама</li>
-        <li><i class="fas fa-check"></i> Аналитика и отчётность</li>
-        <li><i class="fas fa-check"></i> А/Б тестирование</li>
-        <li><i class="fas fa-check"></i> Комьюнити-менеджмент</li>
-      </ul>
-      <a href="https://wa.me/77477025586" class="btn">
-        <i class="fas fa-fire"></i> Продвигать
-      </a>
     </div>
     
     <div class="promo-card premium">
-      <div class="promo-header">
-        <h3>VIP</h3>
-        <div class="promo-badge">PREMIUM</div>
-        <div class="promo-price">
-          <span class="price-amount">380 000 ₸</span>
-          <span class="price-period">/ месяц</span>
+      <div class="promo-content">
+        <div class="promo-header">
+          <h3>VIP</h3>
+          <div class="promo-badge">PREMIUM</div>
+          <div class="promo-price">
+            <span class="price-amount">380 000 ₸</span>
+            <span class="price-period">/ месяц</span>
+          </div>
         </div>
+        <ul class="promo-features">
+          <li><i class="fas fa-check"></i> <strong>Всё из PRO +</strong></li>
+          <li><i class="fas fa-check"></i> Индивидуальный менеджер</li>
+          <li><i class="fas fa-check"></i> Еженедельные отчёты</li>
+          <li><i class="fas fa-check"></i> Голосовые сообщения</li>
+          <li><i class="fas fa-check"></i> Приоритетная поддержка</li>
+          <li><i class="fas fa-check"></i> Личные консультации</li>
+        </ul>
+        <a href="https://wa.me/77477025586" class="btn btn-premium">
+          <i class="fas fa-crown"></i> Премиум
+        </a>
       </div>
-      <ul class="promo-features">
-        <li><i class="fas fa-check"></i> <strong>Всё из PRO +</strong></li>
-        <li><i class="fas fa-check"></i> Индивидуальный менеджер</li>
-        <li><i class="fas fa-check"></i> Еженедельные отчёты</li>
-        <li><i class="fas fa-check"></i> Голосовые сообщения</li>
-        <li><i class="fas fa-check"></i> Приоритетная поддержка</li>
-        <li><i class="fas fa-check"></i> Личные консультации</li>
-      </ul>
-      <a href="https://wa.me/77477025586" class="btn btn-premium">
-        <i class="fas fa-crown"></i> Премиум
-      </a>
     </div>
   </div>
   
@@ -418,78 +436,84 @@
   
   <div class="case-studies">
     <div class="case-study">
-      <div class="case-header">
-        <div class="case-logo">🏢</div>
-        <div>
-          <h4>Строительная компания</h4>
-          <span class="case-duration">3 месяца работы</span>
+      <div class="case-content">
+        <div class="case-header">
+          <div class="case-logo">🏢</div>
+          <div>
+            <h4>Строительная компания</h4>
+            <span class="case-duration">3 месяца работы</span>
+          </div>
         </div>
+        <div class="case-results">
+          <div class="case-result">
+            <span class="result-label">Было заявок:</span>
+            <span class="result-value">12/мес</span>
+          </div>
+          <div class="case-result">
+            <span class="result-label">Стало заявок:</span>
+            <span class="result-value">47/мес</span>
+          </div>
+          <div class="case-result">
+            <span class="result-label">Рост продаж:</span>
+            <span class="result-value highlight">+292%</span>
+          </div>
+        </div>
+        <p class="case-quote">"CRM система и отдел продаж под ключ изменили наш бизнес. Теперь всё под контролем"</p>
       </div>
-      <div class="case-results">
-        <div class="case-result">
-          <span class="result-label">Было заявок:</span>
-          <span class="result-value">12/мес</span>
-        </div>
-        <div class="case-result">
-          <span class="result-label">Стало заявок:</span>
-          <span class="result-value">47/мес</span>
-        </div>
-        <div class="case-result">
-          <span class="result-label">Рост продаж:</span>
-          <span class="result-value highlight">+292%</span>
-        </div>
-      </div>
-      <p class="case-quote">"CRM система и отдел продаж под ключ изменили наш бизнес. Теперь всё под контролем"</p>
     </div>
     
     <div class="case-study">
-      <div class="case-header">
-        <div class="case-logo">💄</div>
-        <div>
-          <h4>Косметический бренд</h4>
-          <span class="case-duration">2 месяца работы</span>
+      <div class="case-content">
+        <div class="case-header">
+          <div class="case-logo">💄</div>
+          <div>
+            <h4>Косметический бренд</h4>
+            <span class="case-duration">2 месяца работы</span>
+          </div>
         </div>
+        <div class="case-results">
+          <div class="case-result">
+            <span class="result-label">Было продаж:</span>
+            <span class="result-value">450к ₸/мес</span>
+          </div>
+          <div class="case-result">
+            <span class="result-label">Стало продаж:</span>
+            <span class="result-value">1.2М ₸/мес</span>
+          </div>
+          <div class="case-result">
+            <span class="result-label">Рост продаж:</span>
+            <span class="result-value highlight">+167%</span>
+          </div>
+        </div>
+        <p class="case-quote">"Продвижение в Instagram принесло нам рекордные продажи. ROI составил 450%"</p>
       </div>
-      <div class="case-results">
-        <div class="case-result">
-          <span class="result-label">Было продаж:</span>
-          <span class="result-value">450к ₸/мес</span>
-        </div>
-        <div class="case-result">
-          <span class="result-label">Стало продаж:</span>
-          <span class="result-value">1.2М ₸/мес</span>
-        </div>
-        <div class="case-result">
-          <span class="result-label">Рост продаж:</span>
-          <span class="result-value highlight">+167%</span>
-        </div>
-      </div>
-      <p class="case-quote">"Продвижение в Instagram принесло нам рекордные продажи. ROI составил 450%"</p>
     </div>
     
     <div class="case-study">
-      <div class="case-header">
-        <div class="case-logo">🍽️</div>
-        <div>
-          <h4>Сеть ресторанов</h4>
-          <span class="case-duration">4 месяца работы</span>
+      <div class="case-content">
+        <div class="case-header">
+          <div class="case-logo">🍽️</div>
+          <div>
+            <h4>Сеть ресторанов</h4>
+            <span class="case-duration">4 месяца работы</span>
+          </div>
         </div>
+        <div class="case-results">
+          <div class="case-result">
+            <span class="result-label">Было клиентов:</span>
+            <span class="result-value">800/мес</span>
+          </div>
+          <div class="case-result">
+            <span class="result-label">Стало клиентов:</span>
+            <span class="result-value">2.1к/мес</span>
+          </div>
+          <div class="case-result">
+            <span class="result-label">Рост клиентов:</span>
+            <span class="result-value highlight">+163%</span>
+          </div>
+        </div>
+        <p class="case-quote">"Автоматизация заказов через WhatsApp увеличила средний чек на 35%"</p>
       </div>
-      <div class="case-results">
-        <div class="case-result">
-          <span class="result-label">Было клиентов:</span>
-          <span class="result-value">800/мес</span>
-        </div>
-        <div class="case-result">
-          <span class="result-label">Стало клиентов:</span>
-          <span class="result-value">2.1к/мес</span>
-        </div>
-        <div class="case-result">
-          <span class="result-label">Рост клиентов:</span>
-          <span class="result-value highlight">+163%</span>
-        </div>
-      </div>
-      <p class="case-quote">"Автоматизация заказов через WhatsApp увеличила средний чек на 35%"</p>
     </div>
   </div>
 </section>

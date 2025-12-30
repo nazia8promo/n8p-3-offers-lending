@@ -41,13 +41,13 @@
   --font-heading: 'Segoe UI', 'Arial', sans-serif;
   --font-body: 'Segoe UI', 'Arial', sans-serif;
   
-  /* Отступы */
-  --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 32px;
-  --space-xl: 48px;
-  --space-xxl: 64px;
+  /* Отступы - обновлено по патчу */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 22px;
+  --space-xl: 30px;
+  --space-xxl: 44px;
 }
 
 * {
@@ -92,6 +92,21 @@ body {
   color: var(--text-light);
   max-width: 700px;
   margin: 0 auto;
+}
+
+/* ===== Логотип (автоматическая смена) - добавлено по патчу ===== */
+.adaptive-logo {
+  height: 38px;
+  width: auto;
+}
+
+.hero .adaptive-logo,
+footer .adaptive-logo {
+  content: url("../assets/logo-text-mobius-dark.svg");
+}
+
+.section:not(.dark) .adaptive-logo {
+  content: url("../assets/logo-text-mobius-light.svg");
 }
 
 /* ===== Hero секция ===== */
@@ -276,7 +291,7 @@ body {
 
 .problem-card {
   background: white;
-  padding: var(--space-lg);
+  padding: var(--space-md); /* Обновлено по патчу */
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
@@ -384,14 +399,14 @@ body {
 .pricing-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-lg);
+  gap: var(--space-md); /* Обновлено по патчу */
   max-width: 1200px;
   margin: 0 auto var(--space-xl);
 }
 
 .pricing-card {
   background: white;
-  padding: var(--space-xl);
+  padding: var(--space-md); /* Обновлено по патчу */
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
@@ -441,12 +456,12 @@ body {
 }
 
 .price {
-  margin: var(--space-lg) 0;
+  margin: var(--space-sm) 0; /* Обновлено по патчу */
   text-align: center;
 }
 
 .price-amount {
-  font-size: 2.8rem;
+  font-size: clamp(1.4rem, 4vw, 1.8rem); /* Обновлено по патчу */
   font-weight: 800;
   color: var(--primary-dark);
   line-height: 1;
@@ -720,14 +735,14 @@ body {
 .promo-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-lg);
+  gap: var(--space-md); /* Обновлено по патчу */
   max-width: 1200px;
   margin: 0 auto var(--space-xl);
 }
 
 .promo-card {
   background: white;
-  padding: var(--space-xl);
+  padding: var(--space-md); /* Обновлено по патчу */
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
@@ -1290,9 +1305,16 @@ footer {
 }
 
 @media (max-width: 768px) {
-  :root {
-    --space-xl: 32px;
-    --space-xxl: 48px;
+  section {
+    padding: 36px 14px; /* Добавлено по патчу */
+  }
+  
+  h1 {
+    font-size: 1.8rem; /* Добавлено по патчу */
+  }
+  
+  h2 {
+    font-size: 1.4rem; /* Добавлено по патчу */
   }
   
   .hero h1 {
@@ -1353,6 +1375,17 @@ footer {
   .footer-logo {
     height: 40px;
   }
+  
+  /* Добавлено по патчу */
+  .pricing-card,
+  .problem-card {
+    padding: 14px;
+  }
+  
+  .btn {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1369,4 +1402,10 @@ footer {
   .setup-info {
     grid-template-columns: 1fr;
   }
+}
+
+/* Добавлены дополнительные классы для плотной сетки - по патчу */
+.pricing-grid,
+.cards-grid {
+  gap: var(--space-md);
 }
