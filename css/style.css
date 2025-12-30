@@ -1060,14 +1060,33 @@ p {
 }
 
 /* ===== CTA секция ===== */
+/* === CTA: центрирование на десктопе === */
 .cta {
-  padding: var(--space-xxl) 20px;
+  padding: 80px 24px;
   background: var(--gradient-primary);
   color: white;
   border-radius: var(--radius-xl);
   margin: 60px 20px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  /* УБИРАЕМ ЛЮБУЮ ЖЁСТКУЮ ВЫСОТУ (КРИТИЧНО) */
+  height: auto !important;
+  min-height: unset !important;
+}
+
+.cta-green {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  height: auto !important;
+  min-height: unset !important;
 }
 
 .cta::before {
@@ -1083,12 +1102,9 @@ p {
 }
 
 .cta-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: var(--space-xl);
-  align-items: center;
+  text-align: center;
   position: relative;
   z-index: 2;
 }
@@ -1117,6 +1133,8 @@ p {
   opacity: 0.9;
   margin-bottom: var(--space-xl);
   max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-features {
@@ -1143,6 +1161,7 @@ p {
   gap: var(--space-md);
   flex-wrap: wrap;
   margin: var(--space-xl) 0;
+  justify-content: center;
 }
 
 .btn-cta {
@@ -1352,9 +1371,9 @@ footer {
     gap: var(--space-lg);
   }
   
+  /* ЕСЛИ У ТЕБЯ БЫЛ GRID ВНУТРИ CTA — ЛОМАЕМ ЕГО */
   .cta-container {
-    grid-template-columns: 1fr;
-    text-align: center;
+    display: block;
   }
 }
 
@@ -1472,6 +1491,33 @@ footer {
 
   .growth p {
     font-size: 16px;
+  }
+  
+  /* МОБИЛЬНЫЙ ФИКС CTA (ЧТОБ ВСЁ ВЛЕЗАЛО) */
+  .cta,
+  .cta-green {
+    padding: 32px 16px !important;
+  }
+
+  .cta h2 {
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .cta p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  /* КНОПКИ — НЕ НА ВСЮ ШИРИНУ НА МОБИЛЕ */
+  .cta .btn,
+  .cta-buttons .btn {
+    width: auto !important;
+    max-width: 260px;
+    padding: 12px 20px;
+    margin: 0 auto;
   }
 }
 
