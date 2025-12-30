@@ -29,6 +29,7 @@
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
   --shadow-xl: 0 15px 50px rgba(0, 0, 0, 0.2);
   --shadow-accent: 0 5px 20px rgba(255, 107, 53, 0.3);
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(46,139,87,0.08);
   
   /* Скругления */
   --radius-sm: 8px;
@@ -67,6 +68,17 @@ body {
   );
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== Параллакс-зерно (grain texture) ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: 9999;
 }
 
 /* ===== Глобальные стили ===== */
@@ -97,6 +109,22 @@ body {
   color: var(--text-light);
   max-width: 700px;
   margin: 0 auto;
+}
+
+/* ===== Фокус-линия под заголовками ===== */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 48px;
+  margin: 12px auto 0;
+  background: linear-gradient(90deg, #FF6B35, #2E8B57);
+  border-radius: 3px;
 }
 
 /* Заголовки */
@@ -152,6 +180,13 @@ p {
   margin-bottom: var(--space-xl);
 }
 
+/* ===== Живой логотип ===== */
+.logo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
 /* ===== Brand logo (Nazia + Möbius + Promo) ===== */
 .brand-logo {
   display: flex;
@@ -174,14 +209,10 @@ p {
   text-shadow: 0 1px 1px rgba(255,255,255,0.6);
 }
 
-/* ===== 3️⃣ ЛЕНТА МЁБИУСА — УСКОРИТЬ ВРАЩЕНИЕ + УБРАТЬ КВАДРАТНУЮ «РАМКУ» ===== */
-@keyframes mobius-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ===== ЛЕНТА МЁБИУСА — анимация ===== */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .brand-mobius {
@@ -193,7 +224,12 @@ p {
   border: none !important;
   outline: none !important;
   overflow: visible;
-  animation: mobius-spin 4s linear infinite;
+  animation: spinSlow 12s linear infinite;
+}
+
+/* ===== Микро-интеракция логотипа ===== */
+.logo-wrapper:hover .brand-mobius {
+  animation-duration: 4s;
 }
 
 .site-logo {
@@ -267,6 +303,12 @@ p {
   font-weight: 800;
   color: var(--accent-light);
   line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+/* ===== Цифры с «магнитным» эффектом ===== */
+.stat-number:hover {
+  transform: scale(1.08);
 }
 
 .stat-label {
@@ -343,18 +385,25 @@ p {
   margin: 0 auto var(--space-xl);
 }
 
+/* ===== Мягкие карточки (glass-lite) ===== */
 .problem-card {
-  background: white;
-  padding: var(--space-md); /* Обновлено по патчу */
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.92),
+    rgba(255,255,255,0.85)
+  );
+  backdrop-filter: blur(4px);
+  padding: var(--space-md);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   border-top: 4px solid var(--accent-main);
 }
 
+/* ===== Hover-эффект «дорогой SaaS» ===== */
 .problem-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
 }
 
 .problem-icon {
@@ -453,14 +502,20 @@ p {
 .pricing-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-md); /* Обновлено по патчу */
+  gap: var(--space-md);
   max-width: 1200px;
   margin: 0 auto var(--space-xl);
 }
 
+/* ===== Мягкие карточки для прайсинга ===== */
 .pricing-card {
-  background: white;
-  padding: var(--space-md); /* Обновлено по патчу */
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.92),
+    rgba(255,255,255,0.85)
+  );
+  backdrop-filter: blur(4px);
+  padding: var(--space-md);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
@@ -469,11 +524,20 @@ p {
   position: relative;
 }
 
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+}
+
 .pricing-card.featured {
   transform: scale(1.05);
   border: 2px solid var(--accent-main);
   box-shadow: var(--shadow-accent);
   z-index: 2;
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-6px);
 }
 
 .pricing-header {
@@ -510,12 +574,12 @@ p {
 }
 
 .price {
-  margin: var(--space-sm) 0; /* Обновлено по патчу */
+  margin: var(--space-sm) 0;
   text-align: center;
 }
 
 .price-amount {
-  font-size: clamp(1.4rem, 4vw, 1.8rem); /* Обновлено по патчу */
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   font-weight: 800;
   color: var(--primary-dark);
   line-height: 1;
@@ -789,14 +853,20 @@ p {
 .promo-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-md); /* Обновлено по патчу */
+  gap: var(--space-md);
   max-width: 1200px;
   margin: 0 auto var(--space-xl);
 }
 
+/* ===== Мягкие карточки для промо ===== */
 .promo-card {
-  background: white;
-  padding: var(--space-md); /* Обновлено по патчу */
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.92),
+    rgba(255,255,255,0.85)
+  );
+  backdrop-filter: blur(4px);
+  padding: var(--space-md);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
@@ -804,10 +874,19 @@ p {
   flex-direction: column;
 }
 
+.promo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+}
+
 .promo-card.featured {
-  transform: translateY(-10px);
+  transform: translateY(-6px);
   border: 2px solid var(--accent-main);
-  box-shadow: var(--shadow-accent);
+  box-shadow: var(--shadow-soft);
+}
+
+.promo-card.featured:hover {
+  transform: translateY(-12px);
 }
 
 .promo-card.premium {
@@ -963,8 +1042,14 @@ p {
   margin: 0 auto;
 }
 
+/* ===== Мягкие карточки для кейсов ===== */
 .case-study {
-  background: white;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.92),
+    rgba(255,255,255,0.85)
+  );
+  backdrop-filter: blur(4px);
   padding: var(--space-xl);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -972,8 +1057,8 @@ p {
 }
 
 .case-study:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
 }
 
 .case-header {
@@ -1379,15 +1464,15 @@ footer {
 
 @media (max-width: 768px) {
   section {
-    padding: 36px 14px; /* Добавлено по патчу */
+    padding: 36px 14px;
   }
   
   h1 {
-    font-size: 1.8rem; /* Добавлено по патчу */
+    font-size: 1.8rem;
   }
   
   h2 {
-    font-size: 1.4rem; /* Добавлено по патчу */
+    font-size: 1.4rem;
   }
   
   .hero h1 {
@@ -1450,7 +1535,6 @@ footer {
     height: 40px;
   }
   
-  /* Добавлено по патчу */
   .pricing-card,
   .problem-card {
     padding: 14px;
