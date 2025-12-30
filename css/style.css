@@ -94,21 +94,6 @@ body {
   margin: 0 auto;
 }
 
-/* ===== Логотип (автоматическая смена) - добавлено по патчу ===== */
-.adaptive-logo {
-  height: 38px;
-  width: auto;
-}
-
-.hero .adaptive-logo,
-footer .adaptive-logo {
-  content: url("../assets/logo-text-mobius-dark.svg");
-}
-
-.section:not(.dark) .adaptive-logo {
-  content: url("../assets/logo-text-mobius-light.svg");
-}
-
 /* ===== Hero секция ===== */
 .hero {
   padding: 60px 20px 100px;
@@ -1408,4 +1393,60 @@ footer {
 .pricing-grid,
 .cards-grid {
   gap: var(--space-md);
+}
+
+/* ===== PATCH CSS-2 — стили логотипа ===== */
+.site-logo img,
+.footer-logo {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .site-logo img {
+    height: 38px;
+  }
+}
+
+/* ===== PATCH CSS-3 — HERO помещается в 1 экран (mobile) ===== */
+@media (max-width: 640px) {
+  .hero {
+    padding: 32px 16px 56px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-stats {
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .btn-hero {
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+}
+
+/* ===== PATCH CSS-4 — сжать «воздух» в карточках ===== */
+@media (max-width: 640px) {
+  .pricing-card,
+  .promo-card,
+  .case-study {
+    padding: 16px;
+  }
+
+  .features-list li,
+  .promo-features li {
+    padding: 6px 0;
+    font-size: 0.95rem;
+  }
 }

@@ -6,21 +6,20 @@
   <title>Nazia8Promo — Премиум решения для роста продаж</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="assets/favicon-mobius.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/favicon-mobius.svg">
+  <link rel="icon" href="assets/favicon-mobius.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon-mobius.svg?v=2">
 </head>
 <body>
 
 <header class="hero">
   <div class="hero-container">
     <div class="logo-header">
-      <img
-        class="site-logo adaptive-logo"
-        src="assets/logo-text-mobius-dark.svg"
-        data-light="assets/logo-text-mobius-light.svg"
-        data-dark="assets/logo-text-mobius-dark.svg"
-        alt="NaziaPromo"
-      />
+      <picture class="site-logo">
+        <!-- Mobile: только знак -->
+        <source media="(max-width: 640px)" srcset="assets/logo-mobius.svg">
+        <!-- Desktop: текст + Мёбиус -->
+        <img src="assets/logo-text-mobius.svg" alt="NaziaPromo">
+      </picture>
     </div>
     
     <div class="hero-content">
@@ -568,7 +567,9 @@
 <footer>
   <div class="footer-container">
     <div class="footer-brand">
-      <img src="assets/logo-text-mobius.svg" alt="Nazia8Promo" class="footer-logo">
+      <img class="footer-logo"
+           src="assets/logo-text-mobius.svg"
+           alt="NaziaPromo">
       <p class="footer-tagline">Премиум решения для роста бизнеса</p>
       <div class="footer-social">
         <a href="https://wa.me/77477025586" class="social-link">
