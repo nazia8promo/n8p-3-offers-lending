@@ -1487,3 +1487,39 @@ footer {
     height: 22px;
   }
 }
+
+/* ===== 1️⃣ ЛОГОТИП: ОБВОДКА ДЛЯ nazia и promo ===== */
+.brand-nazia,
+.brand-promo {
+  -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.25);
+  text-shadow:
+    0 1px 1px rgba(255,255,255,0.6);
+}
+
+/* ===== 3️⃣ ЛЕНТА МЁБИУСА — УСКОРИТЬ ВРАЩЕНИЕ + УБРАТЬ КВАДРАТНУЮ «РАМКУ» ===== */
+@keyframes mobius-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.brand-mobius {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  overflow: visible;
+  animation: mobius-spin 4s linear infinite;
+}
+
+/* ===== СЕРАЯ ЖИРНАЯ ГОРИЗОНТАЛЬНАЯ ЛИНИЯ ЗА «Экспоненциальный рост» ===== */
+.hero-title::after,
+.hero-subtitle::after,
+.hero hr {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+}
